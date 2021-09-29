@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+  Options -Multiviews
+  RewriteEngine On
+  RewriteBase /secureapp/public
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule  ^(.+)$ index.php?url=$1 [QSA,L]
+</IfModule>
+<IfModule mod_headers.c>
+  <FilesMatch "\.(pdf)$">
+        ForceType application/octet-stream
+        Header set Content-Disposition "attachment"
+  </FilesMatch>
+</IfModule>
+
+
